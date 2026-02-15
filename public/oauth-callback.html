@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Connecting...</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: #f5f0e8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .spinner {
+      width: 40px; height: 40px;
+      border: 3px solid #e0d5c5;
+      border-top-color: #be3a1c;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    p { color: #555; font-size: 15px; }
+  </style>
+</head>
+<body>
+  <div class="spinner"></div>
+  <p>Completing authorization...</p>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    if (code && window.opener) {
+      window.opener.postMessage({ type: 'oauth_code', code }, window.location.origin);
+      window.close();
+    } else {
+      document.querySelector('p').textContent = 'Authorization failed. You may close this window.';
+    }
+  </script>
+</body>
+</html>
