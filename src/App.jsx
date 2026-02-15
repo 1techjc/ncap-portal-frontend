@@ -163,7 +163,7 @@ export default function App() {
   const [errorMsg, setErrorMsg] = useState("");
   const popupRef = useRef(null);
 
-  const redirectUri = `${window.location.origin}/oauth-callback`;
+  const redirectUri = `${window.location.origin}/oauth-callback.html`;
 
   const handleConnect = useCallback(() => {
     const p = PLATFORMS.find(p => p.id === platform);
