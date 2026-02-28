@@ -261,10 +261,10 @@ export default function App() {
   const p = PLATFORMS.find(pl => pl.id === platform);
 
   return (
-    <div style={{ minHeight: "100vh", background: "#f5f0e8", fontFamily: "'Georgia', serif" }}>
+    <div style={{ minHeight: "100vh", background: "#E9E9E4", fontFamily: "Arial, sans-serif" }}>
       {/* Header */}
       <div style={{
-        background: "linear-gradient(135deg, #1a3a5c 0%, #be3a1c 100%)",
+        background: "linear-gradient(135deg, #003F87 0%, #CE1126 100%)",
         padding: "0",
         position: "relative",
         overflow: "hidden",
@@ -283,18 +283,18 @@ export default function App() {
               fontSize: 28, border: "1px solid rgba(255,255,255,0.25)",
             }}>⚜️</div>
             <div>
-              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 2 }}>
+              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 2, fontFamily: "Arial, sans-serif" }}>
                 Scouting America
               </div>
-              <div style={{ fontSize: 20, color: "#fff", fontWeight: 700, lineHeight: 1.2 }}>
+              <div style={{ fontSize: 20, color: "#fff", fontWeight: 700, lineHeight: 1.2, fontFamily: "Arial, sans-serif" }}>
                 National Camp Accreditation Program
               </div>
             </div>
           </div>
-          <h1 style={{ fontSize: 28, color: "#fff", fontWeight: 400, margin: 0, lineHeight: 1.3 }}>
+          <h1 style={{ fontSize: 28, color: "#fff", fontWeight: 700, margin: 0, lineHeight: 1.3, fontFamily: "Arial, sans-serif" }}>
             Digital Standards Setup Portal
           </h1>
-          <p style={{ color: "rgba(255,255,255,0.8)", margin: "8px 0 0", fontSize: 14 }}>
+          <p style={{ color: "rgba(255,255,255,0.85)", margin: "8px 0 0", fontSize: 14 }}>
             Copy all 2026 NCAP standards into your camp's file storage — organized and ready for evidence collection.
           </p>
         </div>
@@ -309,7 +309,7 @@ export default function App() {
             ].map(({ n, label }) => (
               <div key={label} style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
                 <span style={{ fontSize: 22, fontWeight: 700, color: "#fff" }}>{n}</span>
-                <span style={{ fontSize: 12, color: "rgba(255,255,255,0.65)" }}>{label}</span>
+                <span style={{ fontSize: 12, color: "rgba(255,255,255,0.7)" }}>{label}</span>
               </div>
             ))}
           </div>
@@ -322,7 +322,7 @@ export default function App() {
           background: "#fff", borderRadius: 16,
           boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
           padding: "40px 48px",
-          border: "1px solid #ece6da",
+          border: "1px solid #D6CEBD",
         }}>
           <StepIndicator step={step} />
 
@@ -345,8 +345,8 @@ export default function App() {
                 disabled={!platform}
                 style={{
                   width: "100%", padding: "14px 0",
-                  background: platform ? "linear-gradient(135deg, #be3a1c, #1a3a5c)" : "#e0d5c5",
-                  color: platform ? "#fff" : "#aaa",
+                  background: platform ? "#003F87" : "#D6CEBD",
+                  color: platform ? "#fff" : "#515354",
                   border: "none", borderRadius: 10, fontSize: 16, fontWeight: 700,
                   cursor: platform ? "pointer" : "not-allowed",
                   letterSpacing: 0.5, transition: "all 0.2s",
@@ -398,8 +398,8 @@ export default function App() {
                   disabled={!campName.trim()}
                   style={{
                     flex: 2, padding: "13px 0",
-                    background: campName.trim() ? "linear-gradient(135deg, #be3a1c, #1a3a5c)" : "#e0d5c5",
-                    color: campName.trim() ? "#fff" : "#aaa",
+                    background: campName.trim() ? "#003F87" : "#D6CEBD",
+                    color: campName.trim() ? "#fff" : "#515354",
                     border: "none", borderRadius: 10, fontSize: 15, fontWeight: 700,
                     cursor: campName.trim() ? "pointer" : "not-allowed",
                   }}
@@ -445,7 +445,7 @@ export default function App() {
 
               <button onClick={handleConnect} disabled={status === "connecting"} style={{
                 width: "100%", padding: "15px 0",
-                background: status === "connecting" ? "#e0d5c5" : `linear-gradient(135deg, ${p.color}, ${p.color}bb)`,
+                background: status === "connecting" ? "#D6CEBD" : p.color,
                 color: "#fff", border: "none", borderRadius: 10, fontSize: 16, fontWeight: 700,
                 cursor: status === "connecting" ? "wait" : "pointer",
                 boxShadow: `0 4px 16px ${p.color}44`,
@@ -485,9 +485,9 @@ export default function App() {
                   </div>
                   <button onClick={handleUpload} style={{
                     width: "100%", padding: "15px 0",
-                    background: "linear-gradient(135deg, #be3a1c, #1a3a5c)",
+                    background: "#CE1126",
                     color: "#fff", border: "none", borderRadius: 10, fontSize: 16, fontWeight: 700,
-                    cursor: "pointer", boxShadow: "0 4px 16px rgba(190,58,28,0.3)",
+                    cursor: "pointer", boxShadow: "0 4px 16px rgba(206,17,38,0.3)",
                   }}>
                     ⚡ Start Setup — Upload All Standards
                   </button>
@@ -541,7 +541,7 @@ export default function App() {
                     ))}
                   </div>
                   <button onClick={() => { setStep(1); setPlatform(null); setCampName(""); setCouncilName(""); setAccessToken(null); setStatus("idle"); setProgress(0); }} style={{
-                    padding: "12px 28px", background: "#1a3a5c", color: "#fff",
+                    padding: "12px 28px", background: "#003F87", color: "#fff",
                     border: "none", borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: "pointer",
                   }}>
                     Set Up Another Camp
@@ -555,7 +555,7 @@ export default function App() {
                   <h2 style={{ fontSize: 20, color: "#be3a1c", margin: "0 0 8px" }}>Something went wrong</h2>
                   <p style={{ color: "#777", fontSize: 14, margin: "0 0 20px" }}>{errorMsg}</p>
                   <button onClick={() => { setStatus("idle"); setProgress(0); }} style={{
-                    padding: "12px 24px", background: "#be3a1c", color: "#fff",
+                    padding: "12px 24px", background: "#CE1126", color: "#fff",
                     border: "none", borderRadius: 8, cursor: "pointer", fontWeight: 700,
                   }}>Try Again</button>
                 </div>
