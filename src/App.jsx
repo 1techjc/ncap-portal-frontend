@@ -275,13 +275,12 @@ export default function App() {
         }} />
         <div style={{ maxWidth: 720, margin: "0 auto", padding: "32px 24px", position: "relative" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 12 }}>
-            {/* Scout fleur-de-lis placeholder */}
-            <div style={{
-              width: 52, height: 52, borderRadius: 10,
-              background: "rgba(255,255,255,0.15)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 28, border: "1px solid rgba(255,255,255,0.25)",
-            }}>⚜️</div>
+            {/* Scout fleur-de-lis */}
+            <img 
+              src="/fleur-de-lis.webp" 
+              alt="Scouting America" 
+              style={{ width: 52, height: 52 }}
+            />
             <div>
               <div style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 2, fontFamily: "Arial, sans-serif" }}>
                 Scouting America
