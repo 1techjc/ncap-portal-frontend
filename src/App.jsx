@@ -524,21 +524,37 @@ export default function App() {
                     <strong>{campName}</strong>'s NCAP Standards 2026 folder is ready in {p?.name}.
                   </p>
                   <p style={{ color: "#777", fontSize: 13, margin: "0 0 28px" }}>
-                    Camp directors can now open each standard's folder, review the PDF, and add their evidence documents alongside it.
+                    All 140 standards are organized and waiting for evidence documents.
                   </p>
-                  <div style={{ background: "#f0faf4", border: "1px solid #a8d8b5", borderRadius: 10, padding: "14px 18px", textAlign: "left", marginBottom: 24 }}>
-                    <div style={{ fontSize: 13, fontWeight: 700, color: "#2d7a47", marginBottom: 8 }}>📋 Next steps for camp directors:</div>
+                  
+                  <div style={{ background: "#fff8e1", border: "1px solid #fde68a", borderRadius: 10, padding: "14px 18px", textAlign: "left", marginBottom: 16 }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: "#7d6608", marginBottom: 8 }}>📘 START HERE - Quick Start Guide.pdf</div>
+                    <div style={{ fontSize: 13, color: "#555" }}>
+                      Open this file first! It explains exactly what to do next with step-by-step instructions.
+                    </div>
+                  </div>
+                  
+                  <div style={{ background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: 10, padding: "14px 18px", textAlign: "left", marginBottom: 24 }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: "#1e3a8a", marginBottom: 8 }}>📊 Progress Dashboard.html</div>
+                    <div style={{ fontSize: 13, color: "#555", marginBottom: 8 }}>
+                      Download this file to your computer, then open it in your web browser to:
+                    </div>
                     {[
-                      "Open the NCAP Standards 2026 folder in " + p?.name,
-                      "Navigate to the relevant section folder",
-                      "Open a standard's folder and review the PDF",
-                      "Upload evidence documents alongside the standard PDF",
+                      "Track completion status of all 140 standards",
+                      "Check off standards as In Progress or Complete",
+                      "Add notes about what evidence you still need",
+                      "See your overall progress percentage",
+                      "Click links to jump to any standard folder"
                     ].map((s, i) => (
-                      <div key={i} style={{ fontSize: 13, color: "#555", padding: "3px 0", display: "flex", gap: 8 }}>
-                        <span style={{ color: "#2d7a47", fontWeight: 700 }}>{i + 1}.</span> {s}
+                      <div key={i} style={{ fontSize: 12, color: "#555", padding: "2px 0 2px 12px" }}>
+                        • {s}
                       </div>
                     ))}
+                    <div style={{ fontSize: 11, color: "#777", marginTop: 8, fontStyle: "italic" }}>
+                      Progress auto-saves in your browser - no account needed!
+                    </div>
                   </div>
+                  
                   <button onClick={() => { setStep(1); setPlatform(null); setCampName(""); setCouncilName(""); setAccessToken(null); setStatus("idle"); setProgress(0); }} style={{
                     padding: "12px 28px", background: "#003F87", color: "#fff",
                     border: "none", borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: "pointer",
