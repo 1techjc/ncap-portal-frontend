@@ -2,6 +2,17 @@ import { useState, useRef, useCallback } from "react";
 
 const API = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
+// Helper to get standard count for selected camp type
+const getStandardCount = (campType) => {
+  switch (campType) {
+    case "all": return 140;
+    case "short-term": return 96;
+    case "day-camp": return 103;
+    case "camp-property": return 26;
+    default: return 140;
+  }
+};
+
 // ─── Platform config ─────────────────────────────────────────────────────────
 const PLATFORMS = [
   {
@@ -515,14 +526,14 @@ export default function App() {
                     Ready to set up your folder
                   </h2>
                   <p style={{ color: "#777", fontSize: 14, margin: "0 0 24px" }}>
-                    Connected to {p?.name}. Click below to create the full NCAP folder structure and upload all 140 standard PDFs.
+                    Connected to {p?.name}. Click below to create the full NCAP folder structure and upload {getStandardCount(campType)} standard PDFs.
                   </p>
                   <div style={{ background: "#f5f0e8", borderRadius: 10, padding: 18, marginBottom: 24 }}>
                     {[
                       ["Camp", campName],
                       ["Council", councilName || "—"],
                       ["Platform", p?.name],
-                      ["Standards", "140 PDFs across 8 sections"],
+                      ["Standards", `${getStandardCount(campType)} PDFs across 8 sections`],
                     ].map(([k, v]) => (
                       <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "5px 0", fontSize: 14, borderBottom: "1px solid #ece6da" }}>
                         <span style={{ color: "#888" }}>{k}</span>
@@ -556,7 +567,7 @@ export default function App() {
                   </div>
                   {uploadedCount > 0 && (
                     <div style={{ fontSize: 13, color: "#be3a1c", fontWeight: 600 }}>
-                      {uploadedCount} of {STANDARDS_COUNT} files uploaded
+                      {uploadedCount} of {getStandardCount(campType)} files uploaded
                     </div>
                   )}
                 </>
@@ -572,7 +583,7 @@ export default function App() {
                     <strong>{campName}</strong>'s NCAP Standards 2026 folder is ready in {p?.name}.
                   </p>
                   <p style={{ color: "#777", fontSize: 13, margin: "0 0 28px" }}>
-                    All 140 standards are organized and waiting for evidence documents.
+                    All {getStandardCount(campType)} standards are organized and waiting for evidence documents.
                   </p>
                   
                   <div style={{ background: "#fff8e1", border: "1px solid #fde68a", borderRadius: 10, padding: "14px 18px", textAlign: "left", marginBottom: 16 }}>
@@ -588,7 +599,7 @@ export default function App() {
                       Download this file to your computer, then open it in your web browser to:
                     </div>
                     {[
-                      "Track completion status of all 140 standards",
+                      `Track completion status of all ${getStandardCount(campType)} standards`,
                       "Check off standards as In Progress or Complete",
                       "Add notes about what evidence you still need",
                       "See your overall progress percentage",
