@@ -153,6 +153,7 @@ function ProgressBar({ value, color = "#be3a1c" }) {
 export default function App() {
   const [step, setStep] = useState(1);
   const [platform, setPlatform] = useState(null);
+  const [campType, setCampType] = useState("all"); // New: camp type filter
   const [campName, setCampName] = useState("");
   const [councilName, setCouncilName] = useState("");
   const [accessToken, setAccessToken] = useState(null);
@@ -222,6 +223,7 @@ export default function App() {
     formData.append("accessToken", accessToken);
     formData.append("campName", campName);
     formData.append("councilName", councilName);
+    formData.append("campType", campType); // Add camp type filter
 
     for (const [name, entry] of pdfEntries) {
       const content = await entry.async("blob");
@@ -363,7 +365,9 @@ export default function App() {
                 Tell us about your camp
               </h2>
               <p style={{ color: "#777", fontSize: 14, margin: "0 0 28px" }}>
-                Your root folder will be named: <strong style={{ color: "#be3a1c" }}>{campName || "Camp Name"} — NCAP Standards 2026</strong>
+                Your root folder will be named: <strong style={{ color: "#be3a1c" }}>
+                  {campName || "Camp Name"} — NCAP Standards 2026{campType !== "all" ? ` (${campType.replace("-", " ")})` : ""}
+                </strong>
               </p>
 
               {[
@@ -386,6 +390,45 @@ export default function App() {
                   />
                 </div>
               ))}
+
+              {/* Camp Type Selector */}
+              <div style={{ marginBottom: 20 }}>
+                <label style={{ display: "block", fontSize: 13, fontWeight: 700, color: "#444", marginBottom: 6 }}>
+                  Camp Type *
+                </label>
+                <p style={{ fontSize: 12, color: "#777", margin: "0 0 10px" }}>
+                  Choose which standards to include based on your camp type
+                </p>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 10 }}>
+                  {[
+                    { id: "all", label: "All Standards", count: 140 },
+                    { id: "short-term", label: "Short-term Camp", count: 96 },
+                    { id: "day-camp", label: "Day Camp", count: 103 },
+                    { id: "camp-property", label: "Camp Property", count: 26 },
+                  ].map(type => (
+                    <button
+                      key={type.id}
+                      onClick={() => setCampType(type.id)}
+                      style={{
+                        padding: "14px 12px",
+                        borderRadius: 8,
+                        border: `2px solid ${campType === type.id ? "#003f87" : "#e8e0d4"}`,
+                        background: campType === type.id ? "#ebf1ff" : "#fafaf8",
+                        cursor: "pointer",
+                        transition: "all 0.2s",
+                        textAlign: "left",
+                      }}
+                    >
+                      <div style={{ fontWeight: 700, fontSize: 13, color: campType === type.id ? "#003f87" : "#444", marginBottom: 3 }}>
+                        {type.label}
+                      </div>
+                      <div style={{ fontSize: 11, color: "#777" }}>
+                        {type.count} standards
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
 
               <div style={{ display: "flex", gap: 12, marginTop: 32 }}>
                 <button onClick={() => setStep(1)} style={{
