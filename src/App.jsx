@@ -471,9 +471,14 @@ export default function App() {
                   This will create:
                 </div>
                 {[
-                  `📁 ${campName} — NCAP Standards 2026`,
+                  `📁 ${campName} — NCAP Standards 2026${campType !== "all" ? ` (${campType.replace("-", " ")})` : ""}`,
                   "  └── 8 section folders",
-                  "       └── 140 standard folders + PDFs",
+                  `       └── ${
+                    campType === "all" ? "140" :
+                    campType === "short-term" ? "96" :
+                    campType === "day-camp" ? "103" :
+                    campType === "camp-property" ? "26" : "140"
+                  } standard folders + PDFs`,
                 ].map(line => (
                   <div key={line} style={{ fontSize: 13, color: "#555", fontFamily: "monospace", lineHeight: 1.8 }}>{line}</div>
                 ))}
