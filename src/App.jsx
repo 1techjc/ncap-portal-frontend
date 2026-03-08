@@ -646,3 +646,39 @@ export default function App() {
     </div>
   );
 }
+{/* Feedback Button - Add before final closing </div> */}
+<a 
+  href="https://forms.gle/JcAzCq1c71No25D66" 
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    position: 'fixed',
+    bottom: 24,
+    right: 24,
+    background: 'linear-gradient(135deg, #003F87, #0052b3)',
+    color: 'white',
+    padding: '14px 24px',
+    borderRadius: 30,
+    textDecoration: 'none',
+    boxShadow: '0 6px 20px rgba(0, 63, 135, 0.3)',
+    fontSize: 15,
+    fontWeight: 700,
+    zIndex: 9999,
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+    transition: 'all 0.2s',
+    fontFamily: 'Arial, sans-serif'
+  }}
+  onMouseEnter={(e) => {
+    e.target.style.transform = 'translateY(-2px)';
+    e.target.style.boxShadow = '0 8px 24px rgba(0, 63, 135, 0.4)';
+  }}
+  onMouseLeave={(e) => {
+    e.target.style.transform = 'translateY(0)';
+    e.target.style.boxShadow = '0 6px 20px rgba(0, 63, 135, 0.3)';
+  }}
+>
+  <span style={{ fontSize: 18 }}>💬</span>
+  Feedback
+</a>
