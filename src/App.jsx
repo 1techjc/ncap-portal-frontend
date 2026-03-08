@@ -643,9 +643,6 @@ export default function App() {
           NCAP Standards 2026 · Scouting America · This portal does not store your credentials.
         </div>
       </div>
-    </div>
-  );
-}
 {/* Feedback Button - Add before final closing </div> */}
 <a 
   href="https://forms.gle/JcAzCq1c71No25D66" 
@@ -682,3 +679,6 @@ export default function App() {
   <span style={{ fontSize: 18 }}>💬</span>
   Feedback
 </a>
+    </div>
+  );
+}
