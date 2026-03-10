@@ -171,6 +171,7 @@ export default function App() {
   const [progress, setProgress] = useState(0);
   const [progressMsg, setProgressMsg] = useState("");
   const [uploadedCount, setUploadedCount] = useState(0);
+  const [totalFiles, setTotalFiles] = useState(0); // Track total from backend
   const [status, setStatus] = useState("idle"); // idle | connecting | uploading | done | error
   const [errorMsg, setErrorMsg] = useState("");
   const popupRef = useRef(null);
@@ -218,6 +219,7 @@ export default function App() {
     setProgress(0);
     setProgressMsg("Preparing upload...");
     setUploadedCount(0);
+    setTotalFiles(0); // Reset total
 
     // Fetch the zip from public folder and extract PDFs
     const resp = await fetch("/ncap-standards.zip");
@@ -258,6 +260,7 @@ export default function App() {
             setProgress(msg.progress);
             setProgressMsg(msg.message);
             if (msg.done) setUploadedCount(msg.done);
+            if (msg.total) setTotalFiles(msg.total); // Capture total from backend
           } else if (msg.type === "complete") {
             setProgress(100);
             setProgressMsg(msg.message);
@@ -565,9 +568,9 @@ export default function App() {
                     <span>{progressMsg}</span>
                     <span>{progress}%</span>
                   </div>
-                  {uploadedCount > 0 && (
+                  {uploadedCount > 0 && totalFiles > 0 && (
                     <div style={{ fontSize: 13, color: "#be3a1c", fontWeight: 600 }}>
-                      {uploadedCount} of {getStandardCount(campType)} files uploaded
+                      {uploadedCount} of {totalFiles} files uploaded
                     </div>
                   )}
                 </>
@@ -620,6 +623,13 @@ export default function App() {
                   }}>
                     Set Up Another Camp
                   </button>
+                  
+                  <div style={{ marginTop: 16, fontSize: 12, color: "#666" }}>
+                    Need to regenerate docs for an existing folder?{" "}
+                    <a href="/regenerate" style={{ color: "#003F87", fontWeight: 600, textDecoration: "none" }}>
+                      Click here
+                    </a>
+                  </div>
                 </div>
               )}
 
@@ -641,44 +651,12 @@ export default function App() {
         {/* Footer */}
         <div style={{ textAlign: "center", padding: "24px 0", fontSize: 12, color: "#aaa" }}>
           NCAP Standards 2026 · Scouting America · This portal does not store your credentials.
+          <br/>
+          <a href="/regenerate" style={{ color: "#003F87", textDecoration: "none", marginTop: 8, display: "inline-block" }}>
+            Regenerate Docs for Existing Folder
+          </a>
         </div>
       </div>
-{/* Feedback Button - Add before final closing </div> */}
-<a 
-  href="https://forms.gle/JcAzCq1c71No25D66" 
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{
-    position: 'fixed',
-    bottom: 24,
-    right: 24,
-    background: 'linear-gradient(135deg, #003F87, #0052b3)',
-    color: 'white',
-    padding: '14px 24px',
-    borderRadius: 30,
-    textDecoration: 'none',
-    boxShadow: '0 6px 20px rgba(0, 63, 135, 0.3)',
-    fontSize: 15,
-    fontWeight: 700,
-    zIndex: 9999,
-    display: 'flex',
-    alignItems: 'center',
-    gap: 8,
-    transition: 'all 0.2s',
-    fontFamily: 'Arial, sans-serif'
-  }}
-  onMouseEnter={(e) => {
-    e.target.style.transform = 'translateY(-2px)';
-    e.target.style.boxShadow = '0 8px 24px rgba(0, 63, 135, 0.4)';
-  }}
-  onMouseLeave={(e) => {
-    e.target.style.transform = 'translateY(0)';
-    e.target.style.boxShadow = '0 6px 20px rgba(0, 63, 135, 0.3)';
-  }}
->
-  <span style={{ fontSize: 18 }}>💬</span>
-  Feedback
-</a>
     </div>
   );
 }

@@ -1,9 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
+import RegenerateDocs from './RegenerateDocs.jsx'
+
+function Router() {
+  const path = window.location.pathname;
+  
+  if (path === '/regenerate') {
+    return <RegenerateDocs />;
+  }
+  
+  return <App />;
+}
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <Router />
   </React.StrictMode>
 )
